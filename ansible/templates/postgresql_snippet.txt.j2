@@ -1,0 +1,9 @@
+#
+# Connect to the database on the server using the example-user
+# Password: anothertotallysecurepassword
+psql -h {{ hostvars['postgresql-server']['ansible_default_ipv4']['address'] }} -d example-database -U example-user
+
+#
+# Connections using the postgres user will fail,
+# as they are not allowed
+psql -h {{ hostvars['postgresql-server']['ansible_default_ipv4']['address'] }} -d example-database -U postgres
