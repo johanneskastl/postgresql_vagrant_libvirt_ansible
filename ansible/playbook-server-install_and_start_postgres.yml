@@ -1,0 +1,20 @@
+---
+- name: 'Install and start a PostgreSQL database'
+  hosts: 'postgresql-server'
+  gather_facts: true
+  become: true
+
+  pre_tasks:
+
+    - name: 'Install ACL package to work around "temporary files" errors in Ansible'
+      ansible.builtin.package:
+        name: 'acl'
+        state: 'present'
+
+  roles:
+
+    - role: 'johanneskastl.install_and_start_postgresql'
+      only_listen_on_localhost: false
+      # The password should of course be encrypted in Ansible Vault,
+      # not in cleartext in a playbook...
+      postgresql_superuser_password: 'totallysecurepassword'
