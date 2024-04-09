@@ -1,0 +1,43 @@
+---
+- name: 'Configure a PostgreSQL database'
+  hosts: 'postgresql-server'
+  gather_facts: true
+  become: true
+
+  pre_tasks:
+
+    - name: 'Install ACL package to work around "temporary files" errors in Ansible'
+      ansible.builtin.package:
+        name: 'acl'
+        state: 'present'
+
+  roles:
+
+    - role: 'johanneskastl.configure_a_postgresql_database'
+      # The passwords should of course be encrypted in Ansible Vault,
+      # not in cleartext in a playbook...
+      postgresql_login_user: 'postgres'
+      postgresql_login_password: 'totallysecurepassword'
+      postgresql_database_name: 'example-database'
+      postgresql_user_name: 'example-user'
+      postgresql_user_password: 'anothertotallysecurepassword'
+
+  post_tasks:
+
+    - name: 'Allow connections for example-user from everywhere'
+      community.postgresql.postgresql_pg_hba:
+        dest: '/var/lib/pgsql/data/pg_hba.conf'
+        contype: 'host'
+        users: 'example-user'
+        source: '0.0.0.0/0'
+        databases: 'all'
+        method: 'scram-sha-256'
+      notify:
+        - 'Restart postgresql'
+
+  handlers:
+
+    - name: 'Restart postgresql'
+      ansible.builtin.service:
+        name: 'postgresql.service'
+        state: 'restarted'
