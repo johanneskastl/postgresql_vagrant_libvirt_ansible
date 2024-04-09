@@ -28,3 +28,10 @@
 
 - name: 'Run playbook-server-configure_a_postgresql_database.yml'
   ansible.builtin.import_playbook: playbook-server-configure_a_postgresql_database.yml
+
+#
+# PostgreSQL client
+#
+
+- name: 'Run playbook-client-postgresql_snippet.yml'
+  ansible.builtin.import_playbook: playbook-client-postgresql_snippet.yml
