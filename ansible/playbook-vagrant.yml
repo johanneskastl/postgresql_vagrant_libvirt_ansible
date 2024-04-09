@@ -18,3 +18,10 @@
 
 - name: 'Run playbook-all_nodes-install_psql_package.yml'
   ansible.builtin.import_playbook: playbook-all_nodes-install_psql_package.yml
+
+#
+# PostgreSQL server
+#
+
+- name: 'Run playbook-server-install_and_start_postgres.yml'
+  ansible.builtin.import_playbook: playbook-server-install_and_start_postgres.yml
