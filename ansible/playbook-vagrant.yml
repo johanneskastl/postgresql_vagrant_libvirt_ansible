@@ -25,3 +25,6 @@
 
 - name: 'Run playbook-server-install_and_start_postgres.yml'
   ansible.builtin.import_playbook: playbook-server-install_and_start_postgres.yml
+
+- name: 'Run playbook-server-configure_a_postgresql_database.yml'
+  ansible.builtin.import_playbook: playbook-server-configure_a_postgresql_database.yml
