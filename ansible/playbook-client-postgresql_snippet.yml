@@ -11,7 +11,15 @@
 
   tasks:
 
-    - name: 'Prepare snippet with Postgres commands'
+    - name: 'Prepare snippet with Postgres commands for vagrant user'
+      ansible.builtin.template:
+        src: 'postgresql_snippet.txt.j2'
+        dest: '/home/vagrant/postgresql_snippet.txt'
+        owner: 'vagrant'
+        group: 'vagrant'
+        mode: '0644'
+
+    - name: 'Prepare snippet with Postgres commands for root user'
       ansible.builtin.template:
         src: 'postgresql_snippet.txt.j2'
         dest: '/root/postgresql_snippet.txt'
