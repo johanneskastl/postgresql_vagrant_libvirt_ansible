@@ -1,0 +1,20 @@
+---
+- name: 'Gather facts'
+  hosts: 'all'
+  gather_facts: true
+  become: true
+
+- name: 'Postgresql snippet'
+  hosts: 'postgresql-client'
+  gather_facts: true
+  become: true
+
+  tasks:
+
+    - name: 'Prepare snippet with Postgres commands'
+      ansible.builtin.template:
+        src: 'postgresql_snippet.txt.j2'
+        dest: '/root/postgresql_snippet.txt'
+        owner: 'root'
+        group: 'root'
+        mode: '0644'
