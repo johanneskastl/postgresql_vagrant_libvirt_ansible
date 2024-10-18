@@ -5,7 +5,7 @@ server](https://www.postgresql.org/). It also creates a VM and
 installs the `psql` client command, that allows a user to connect to a
 PostgreSQL database.
 
-Default OS is openSUSE Leap 15.5. Although that can be changed in the
+Default OS is openSUSE Leap 15.6. Although that can be changed in the
 Vagrantfile, please beware that this will break the Ansible provisioning.
 
 Ansible adds a file called `postgresql_snippet.txt` with instructions to the
@@ -16,8 +16,8 @@ the PostgreSQL server VM.
 ## Vagrant
 
 1. You need vagrant obviously. And ansible. And git...
-1. Fetch the box, per default this is `opensuse/Leap-15.5.x86_64`, using
-   `vagrant box add opensuse/Leap-15.5.x86_64`.
+1. Fetch the box, per default this is `opensuse/Leap-15.6.x86_64`, using
+   `vagrant box add opensuse/Leap-15.6.x86_64`.
 1. Make sure the git submodules are fully working by issuing `git submodule init
    && git submodule update`
 1. Run `vagrant up`
