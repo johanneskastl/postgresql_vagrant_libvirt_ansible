@@ -25,7 +25,7 @@ the PostgreSQL server VM.
 1. Run the first command from the file, that looks something like this:
 
    ```bash
-   psql -h 192.192.0.2.13 -d example-database -U example-user
+   psql -h 192.0.2.13 -d example-database -U example-user
    ```
 
    The IP address will vary in your case, of course.
