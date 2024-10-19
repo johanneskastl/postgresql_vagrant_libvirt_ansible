@@ -13,6 +13,9 @@ client VM (to both the `vagrant` and the `root` user's home directory). This
 file contains the command required to establish a connection to the database on
 the PostgreSQL server VM.
 
+For convenience, the commands are also printed out at the end of the Ansible
+provisioning.
+
 ## Vagrant
 
 1. You need vagrant obviously. And ansible. And git...
