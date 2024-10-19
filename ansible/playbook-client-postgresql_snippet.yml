@@ -26,3 +26,15 @@
         owner: 'root'
         group: 'root'
         mode: '0644'
+
+    - name: 'Output psql command for example-user'
+      ansible.builtin.debug:
+        msg: "Connection (from postgresql-client) as the example-user will be successful: psql -h {{ hostvars['postgresql-server']['ansible_default_ipv4']['address'] }} -d example-database -U example-user"
+
+    - name: 'Output example-user credentials'
+      ansible.builtin.debug:
+        msg: "The password for the example-user is 'anothertotallysecurepassword'"
+
+    - name: 'Output psql command for root user (that will fail)'
+      ansible.builtin.debug:
+        msg: "Connection (from postgresql-client) as the root user will fail: psql -h {{ hostvars['postgresql-server']['ansible_default_ipv4']['address'] }} -d example-database -U postgres"
